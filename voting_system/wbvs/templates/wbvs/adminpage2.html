@@ -1,0 +1,31 @@
+{% extends "wbvs/layout.html" %}
+
+{% block title %}
+    Page2Admin
+{% endblock %}
+
+{% block body %}
+    {% if cnadidate_count_warning %}
+        <div class="alert alert-danger alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Alert!</strong> <br> Atleast 2 Candidates Should Be There
+        </div>
+    {% endif %}
+    <h3>Booth ID :- {{boothID}}</h3>
+    <ul>
+        {% for candidate in candidate_list %}
+            <li>{{candidate.candidateName}}</li>
+            <li>{{candidate.description}}</li>
+            <li><img src="{{candidate.image.url}}" width="80px"></li>
+        {% endfor %}
+    </ul>
+    <form action="{% url 'adminpage2' boothID %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{adminform2}}
+        <input type="submit">
+    </form>
+    <form action="{% url 'adminpage3' boothID %}">
+        <p>All Candidates Added???</p>
+        <button>Finish Candidate Setup</button>
+    </form>
+{% endblock %}

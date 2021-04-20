@@ -1,0 +1,28 @@
+{% extends "wbvs/layout.html" %}
+
+{% block script %}
+    <script>
+        function requesting_access(){
+            alert('Requesting Acces Please Wait!!')
+            window.location = "{% url 'waiting' boothID %}";
+        }
+    </script>
+{% endblock %}
+
+{% block title %}
+    VoterPage2
+{% endblock %}
+
+{% block body %}
+    <h4>Booth Access Requested With Following Details :-</h4>
+    <ul>
+        <li><strong>Title :- </strong>{{booth.title}}</li>
+        <li><strong>Description :-</strong>{{booth.description}}</li>
+        <li><strong>Admin :- </strong>{{admin.first_name}} {{admin.last_name}}</li>
+        <li><strong>Contact Admin At</strong>{{admin.email}}</li>
+    </ul>
+    <form action="{% url 'access' boothID %}" method="POST">
+        {% csrf_token %}
+        <button onclick="requesting_access()">Request Access</button>
+    </form>
+{% endblock %}

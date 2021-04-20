@@ -1,0 +1,27 @@
+{% extends "wbvs/layout.html" %}
+
+
+{% block script %}
+    <script>
+        function autoRefresh() {
+            window.location = window.location.href;
+        }
+        setInterval('autoRefresh()', 5000);
+    </script>
+{% endblock %}
+
+
+{% block title %}
+    Waiting Page
+{% endblock %}
+
+
+{% block body %}
+    <p>Please Wait</p>
+    {% if allowed %}
+        <form action="{% url 'voterpage3' boothID %}">
+            {% csrf_token %}
+            <button>Proceed For Voting</button>
+        </form>
+    {% endif %}
+{% endblock %}

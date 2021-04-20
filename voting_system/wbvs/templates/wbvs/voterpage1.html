@@ -1,0 +1,13 @@
+{% extends "wbvs/layout.html" %}
+
+{% block title %}
+    VoterPage1
+{% endblock %}
+
+{% block body %}
+    <form action="{% url 'voterpage1' %}" method="POST">
+        {% csrf_token %}
+        {{voterform1}}
+        <input type="submit">
+    </form>
+{% endblock %}

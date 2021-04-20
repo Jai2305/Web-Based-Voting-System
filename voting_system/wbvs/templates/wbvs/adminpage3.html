@@ -1,0 +1,61 @@
+{% extends "wbvs/layout.html" %}
+
+
+{% block script %}
+    <script>
+        function autoRefresh() {
+            window.location = window.location.href;
+        }
+        setInterval('autoRefresh()', 5000);
+        function myFunction() {
+            if (confirm("Result Will Be Declared. This Action Is Irreversible ")) {
+                window.location = "{% url 'first_page' %}";
+            }
+        }
+    </script>
+{% endblock %}
+
+
+{% block title %}
+    Page3Admin
+{% endblock %}
+
+
+{% block body %}
+    <h3>
+        Booth ID :- {{boothID}}
+        <form action="{% url 'calculate' boothID %}">
+            <input class="btn btn-primary" type="submit" value="End Voting And Declare Result!!!!!!" onclick="myFunction()">
+        </form>
+    </h3>
+    <table>
+        <thead>
+            <td>Requests Received</td>
+            <td>Approved Vote Requests</td>
+            <td>Denied Request</td>
+            <td>Vote Counted</td>
+            <td>Pending Votes</td>
+        </thead>
+        <tr>
+            <td>{{total_requests}}</td>
+            <td>{{approved_requests}}</td>
+            <td>{{denied_requests}}</td>
+            <td>{{voted_votes}}</td>
+            <td>{{pending_votes}}</td>
+        </tr>
+    </table>
+    <ul>
+        {% for voter in voter_list %}
+            <li>Name - {{voter.first_name}} <br> ID - {{voter.voterID.id}}@voter <br> Status - {{voter.voting_status}} <br>
+                {% if not voter.allowed %}
+                    <form action="{% url 'adminpage3' boothID %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="foo" value="{{voter.voterID.id}}">
+                        <button name = "request_rply" value="1">Accept</button>
+                        <button name = "request_rply" value="-1">Reject</button>
+                    </form>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

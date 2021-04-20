@@ -1,0 +1,20 @@
+{% extends "wbvs/layout.html" %}
+
+{% block title %}
+    View Details
+{% endblock %}
+
+
+{% block content %}
+    <img src="{{user.image.url}}" width="100px">
+    <h3>Username - {{user.username}}</h3>
+    <ul>
+        <li>Full Name - {{user.first_name}} {{user.last_name}}</li>
+        <li>Email - {{user.email}}</li>
+        <li>Date Joined - {{user.date_joined.date}}</li>
+        <li>Last Login - {{user.last_login.date}}</li>
+    </ul>
+    <form action="{% url 'edit_password' %}">
+        <input class="btn btn-primary" type="submit" value="Change Password">
+    </form>
+{% endblock %}

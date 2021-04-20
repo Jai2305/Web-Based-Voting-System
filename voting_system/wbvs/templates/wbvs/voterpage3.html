@@ -1,0 +1,34 @@
+{% extends "wbvs/layout.html" %}
+
+{% block script %}
+    <script>
+        function myFunction() {
+            if (confirm("Your Vote Will Be Recorded. This Action Is Irreversible")) {
+                window.location = "{% url 'first_page' %}";
+            }
+        }
+    </script>
+{% endblock %}
+
+{% block title %}
+    Page3Voter
+{% endblock %}
+
+{% block body %}
+    <h3>Booth ID :- {{boothID}}</h3>
+    <form action="{% url 'voterpage3' boothId %}" method="POST">
+        {% csrf_token %}
+            {% for candidate in candidate_list %}
+                <input type="radio" value="{{candidate.candidateID}}" id ="{{candidate.candidateID}}" name="candidate_selected">
+                <label for="{{candidate.candidateID}}">
+                    <ul>
+                        <li>Candidate ID - {{candidate.candidateID}}</li>
+                        <li>Candidate Name - {{candidate.candidateName}}</li>
+                        <li><img src="{{candidate.image.url}}" width="80px"></li>
+                    </ul>
+                </label><br>
+            {% endfor %}
+        </select>
+        <input class="btn btn-primary" type="submit" value="Vote" onclick="myFunction()">
+    </form>
+{% endblock %}

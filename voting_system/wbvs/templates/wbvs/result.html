@@ -1,0 +1,28 @@
+{% extends "wbvs/layout.html" %}
+{% load testing %}
+
+
+{% block title %}
+    Result
+{% endblock %}
+
+{% block body %}
+    <h3>Booth ID :- {{boothID}}</h3>
+    {% if show_result %}
+        <table>
+            <thead>
+                <td>CandidateID</td>
+                <td>Number Of Votes</td>
+            </thead>
+            {% for key, value in candidates_data.items %}
+                <tr>
+                    <td>{% show_name key %} <img src="{% show_image key %}" width="80px"></td>
+                    <td>{{value}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <h2>{{winner}} Has Won The Polling  Congratulations!!!</h2>
+    {% else %}
+        <p>Result Not Declared Yet!!!</p>
+    {% endif %}
+{% endblock %}

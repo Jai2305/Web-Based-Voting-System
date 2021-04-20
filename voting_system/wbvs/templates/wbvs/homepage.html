@@ -1,0 +1,42 @@
+{% extends "wbvs/layout.html" %}
+
+
+{% block title %}
+    Web Based Voting System
+{% endblock %}
+ 
+
+{% block content %}
+    {% if success_vote %}
+        <div class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Success!!!</strong> Your Vote Has Been Successfully Recorded.
+        </div>
+    {% elif success_login %}
+        <div class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Welcome {{user.first_name}} {{user.last_name}}!!!</strong> You Have logged in successfully.
+        </div>
+    {% elif success_register %}
+        <div class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Welcome {{user.first_name}} {{user.last_name}}!!!</strong> You Have Registered successfully.
+        </div>
+    {% elif failed_booth_find %}
+        <div class="alert alert-danger alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Error!</strong> Requested Booth Either Doesn't Exist Or Voting Has Ended.<br>Contact Admin!!
+        </div>
+    {% elif permission_denied %}
+        <div class="alert alert-danger alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Request Denied</strong> Request has been denied.<br>Contact Voting Admin!!
+        </div>
+    {% endif %}
+    <form action="{% url 'voterpage1' %}">
+        <button>As A Voter</button>
+    </form>
+    <form action="{% url 'adminpage1' %}">
+        <button>As A Voting Admin</button>
+    </form>
+{% endblock %}

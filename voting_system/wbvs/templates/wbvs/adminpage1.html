@@ -1,0 +1,14 @@
+{% extends "wbvs/layout.html" %}
+
+{% block title %}
+    Form1Admin
+{% endblock %}
+
+{% block body %}
+    <h3>Booth ID :- {{boothID}}</h3>
+    <form action="{% url 'adminform1' boothID %}" method="POST">
+        {% csrf_token %}
+        {{adminform1}}
+        <input type="submit">
+    </form>
+{% endblock %}

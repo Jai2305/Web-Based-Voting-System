@@ -1,0 +1,63 @@
+{% extends "wbvs/layout.html" %}
+
+
+{% block title %}
+    Web Based Voting System
+{% endblock %}
+ 
+
+{% block content %}
+{% if success_logout %}
+<!--<div class="alert alert-success alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Bye!!!</strong> You Have logged out successfully.
+</div>-->
+{% endif %}
+<main class = "content">
+    <img src="/media/images/landing_pg/index_images/6.jpg" width="100%" height="95%">
+</main>
+{% endblock %}
+
+
+{% block footer %}
+<div class="footer">
+    <p class="copyright"> Hey, Contact Us!! </p>
+    <div class="flip-card">
+        <div class="flip-card-inner ">
+          <div class="flip-card-front">
+            <img src="/media/images/landing_pg/creators/abhinay_boii.jpeg" alt="Abhinay" style="width:100%; margin-bottom: 8px;">
+            <h4 id="name">Abhinay Choupal</h4> 
+          </div>
+          <div class="flip-card-back">
+            <h4 id="name">Abhinay Choupal</h4> 
+            <p id="name1">Front End</p> 
+          </div>
+        </div>
+      </div>
+      <div class="flip-card">
+        <div class="flip-card-inner ">
+          <div class="flip-card-front">
+            <img src="/media/images/landing_pg/creators/sriharsha_boii.jpeg" alt="Harsha" style="width:100%; margin-bottom: 8px;">
+            <h4 id="name">Chigilipalli Sriharsha</h4> 
+          </div>
+          <div class="flip-card-back">
+            <h4 id="name">Chigilipalli Sriharsha</h4> 
+            <p id="name1">UI & UX</p> 
+          </div>
+        </div>
+      </div>
+      <div class="flip-card">
+        <div class="flip-card-inner ">
+          <div class="flip-card-front">
+            <img src="/media/images/landing_pg/creators/abhinav_boii.jpeg" alt="Abhinav" style="width:100%; margin-bottom: 8px;">
+            <h4 id="name">Abhinav Sharma</h4> 
+          </div>
+          <div class="flip-card-back">
+            <h4 id="name">Abhinav Sharma</h4> 
+            <p id="name1">Back End</p> 
+          </div>
+        </div>
+      </div>
+    <p class="copyright"> &copy; Copyright All rights reserved. </p>
+</div>
+{% endblock %}
