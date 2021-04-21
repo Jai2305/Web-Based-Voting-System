@@ -7,6 +7,10 @@ table tr td{
 }
 /*----------------------------*/
 
+a{
+    text-decoration: none;
+}
+
 .sidenav {
     height: 100%;
     width: 0;
@@ -27,7 +31,6 @@ table tr td{
     border-bottom: 2px;
     border-color: white;
     border-style: solid;
-    text-decoration: none;
     font-size: 20px;
     color: white;   
     display: block;

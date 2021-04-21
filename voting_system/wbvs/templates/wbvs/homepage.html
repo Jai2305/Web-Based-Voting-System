@@ -8,28 +8,28 @@
 
 {% block content %}
     {% if success_vote %}
-        <div class="alert alert-success alert-dismissible">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <div class="alert alert-success alert-dismissible"  role="alert">
+            <a type="button" class="close" data-dismiss="alert" aria-label="close"><span aria-hidden="true">&times;</span></a>
             <strong>Success!!!</strong> Your Vote Has Been Successfully Recorded.
         </div>
     {% elif success_login %}
-        <div class="alert alert-success alert-dismissible">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <div class="alert alert-success alert-dismissible"  role="alert">
+            <a type="button" class="close" data-dismiss="alert" aria-label="close"><span aria-hidden="true">&times;</span></a>
             <strong>Welcome {{user.first_name}} {{user.last_name}}!!!</strong> You Have logged in successfully.
         </div>
     {% elif success_register %}
-        <div class="alert alert-success alert-dismissible">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <div class="alert alert-success alert-dismissible"  role="alert">
+            <a type="button" class="close" data-dismiss="alert" aria-label="close"><span aria-hidden="true">&times;</span></a>
             <strong>Welcome {{user.first_name}} {{user.last_name}}!!!</strong> You Have Registered successfully.
         </div>
     {% elif failed_booth_find %}
-        <div class="alert alert-danger alert-dismissible">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <div class="alert alert-danger alert-dismissible"  role="alert">
+            <a type="button" class="close" data-dismiss="alert" aria-label="close"><span aria-hidden="true">&times;</span></a>
             <strong>Error!</strong> Requested Booth Either Doesn't Exist Or Voting Has Ended.<br>Contact Admin!!
         </div>
     {% elif permission_denied %}
-        <div class="alert alert-danger alert-dismissible">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <div class="alert alert-danger alert-dismissible"  role="alert">
+            <a type="button" class="close" data-dismiss="alert" aria-label="close"><span aria-hidden="true">&times;</span></a>
             <strong>Request Denied</strong> Request has been denied.<br>Contact Voting Admin!!
         </div>
     {% endif %}
