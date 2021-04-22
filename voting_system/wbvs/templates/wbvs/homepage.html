@@ -7,36 +7,43 @@
  
 
 {% block content %}
-    {% if success_vote %}
+    <div class="bkgrnd_homepage">
+        {% if success_vote %}
         <div class="alert alert-success alert-dismissible"  role="alert">
             <a type="button" class="close" data-dismiss="alert" aria-label="close"><span aria-hidden="true">&times;</span></a>
             <strong>Success!!!</strong> Your Vote Has Been Successfully Recorded.
         </div>
-    {% elif success_login %}
-        <div class="alert alert-success alert-dismissible"  role="alert">
-            <a type="button" class="close" data-dismiss="alert" aria-label="close"><span aria-hidden="true">&times;</span></a>
-            <strong>Welcome {{user.first_name}} {{user.last_name}}!!!</strong> You Have logged in successfully.
+        {% elif success_login %}
+            <div class="alert alert-success alert-dismissible"  role="alert">
+                <a type="button" class="close" data-dismiss="alert" aria-label="close"><span aria-hidden="true">&times;</span></a>
+                <strong>Welcome {{user.first_name}} {{user.last_name}}!!!</strong> You Have logged in successfully.
+            </div>
+        {% elif success_register %}
+            <div class="alert alert-success alert-dismissible"  role="alert">
+                <a type="button" class="close" data-dismiss="alert" aria-label="close"><span aria-hidden="true">&times;</span></a>
+                <strong>Welcome {{user.first_name}} {{user.last_name}}!!!</strong> You Have Registered successfully.
+            </div>
+        {% elif failed_booth_find %}
+            <div class="alert alert-danger alert-dismissible"  role="alert">
+                <a type="button" class="close" data-dismiss="alert" aria-label="close"><span aria-hidden="true">&times;</span></a>
+                <strong>Error!</strong> Requested Booth Either Doesn't Exist Or Voting Has Ended.<br>Contact Admin!!
+            </div>
+        {% elif permission_denied %}
+            <div class="alert alert-danger alert-dismissible"  role="alert">
+                <a type="button" class="close" data-dismiss="alert" aria-label="close"><span aria-hidden="true">&times;</span></a>
+                <strong>Request Denied</strong> Request has been denied.<br>Contact Voting Admin!!
+            </div>
+        {% endif %}
+        <div class="bkgrnd" style="background-image: url(/media/images/landing_pg/index_images/0.png);
+        height: 512px;">    
+            <div class="homepage_choice">
+                <form action="{% url 'voterpage1' %}">
+                    <button class="btn btn-info">As A Voter</button>
+                </form>
+                <form action="{% url 'adminpage1' %}">
+                    <button class="btn btn-info">As A Voting Admin</button>
+                </form>
+            </div>
         </div>
-    {% elif success_register %}
-        <div class="alert alert-success alert-dismissible"  role="alert">
-            <a type="button" class="close" data-dismiss="alert" aria-label="close"><span aria-hidden="true">&times;</span></a>
-            <strong>Welcome {{user.first_name}} {{user.last_name}}!!!</strong> You Have Registered successfully.
-        </div>
-    {% elif failed_booth_find %}
-        <div class="alert alert-danger alert-dismissible"  role="alert">
-            <a type="button" class="close" data-dismiss="alert" aria-label="close"><span aria-hidden="true">&times;</span></a>
-            <strong>Error!</strong> Requested Booth Either Doesn't Exist Or Voting Has Ended.<br>Contact Admin!!
-        </div>
-    {% elif permission_denied %}
-        <div class="alert alert-danger alert-dismissible"  role="alert">
-            <a type="button" class="close" data-dismiss="alert" aria-label="close"><span aria-hidden="true">&times;</span></a>
-            <strong>Request Denied</strong> Request has been denied.<br>Contact Voting Admin!!
-        </div>
-    {% endif %}
-    <form action="{% url 'voterpage1' %}">
-        <button>As A Voter</button>
-    </form>
-    <form action="{% url 'adminpage1' %}">
-        <button>As A Voting Admin</button>
-    </form>
+    </div>
 {% endblock %}

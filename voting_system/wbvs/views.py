@@ -13,7 +13,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 import uuid
 import re
-
+ 
 
 class RegisterForm(forms.Form):
     first_name = forms.CharField(label = "",widget= forms.TextInput(attrs={'placeholder':'First Name', 'class':'form-group form-control', 'autofocus type':'text'}), max_length=10)
