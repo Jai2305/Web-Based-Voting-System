@@ -343,7 +343,7 @@ def edit_password(request):
                 "passwd_form" : PasswordChangeForm(request.POST)
             })
         User.objects.filter(username = request.user.username).update(password = make_password(new_password))
-        return HttpResponseRedirect(reverse("homepage"))
+        return HttpResponseRedirect(reverse("index"))
 
     return render(request, "wbvs/edit_password.html", {
         "passwd_form" : PasswordChangeForm()
