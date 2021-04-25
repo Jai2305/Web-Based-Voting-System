@@ -28,7 +28,7 @@ class Candidate(models.Model):
     description = models.CharField(max_length=200)
     image = models.ImageField(upload_to = "images/candidates", blank=True)
     def __str__(self):
-        return self.candidateID
+        return self.candidateID 
 
 
 class Voter(models.Model):
@@ -58,3 +58,8 @@ class History(models.Model):
     result_declared = models.BooleanField()
     result = models.CharField(max_length=16)
     voting_status = models.CharField(max_length=16, default = "Not Voted")
+
+class Feedback(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="feedback_by")
+    subject = models.CharField(max_length=16)
+    feedback =  models.CharField(max_length=200)

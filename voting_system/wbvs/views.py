@@ -7,13 +7,13 @@ from django import forms
 
 from django.contrib.auth.hashers import make_password
 
-from .models import Result, User, Booth, Candidate, Voter, VotingList, History
+from .models import Result, User, Booth, Candidate, Voter, VotingList, History, Feedback
 
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 import uuid
 import re
- 
+  
 
 class RegisterForm(forms.Form):
     first_name = forms.CharField(label = "",widget= forms.TextInput(attrs={'placeholder':'First Name', 'class':'form-group form-control', 'autofocus type':'text'}), max_length=10)
@@ -21,7 +21,7 @@ class RegisterForm(forms.Form):
     email = forms.EmailField(label = "",widget= forms.TextInput(attrs={'placeholder':'Email', 'class':'form-group form-control', 'autofocus type':'text'}))
     password = forms.CharField(label = "",widget=forms.PasswordInput(attrs={'placeholder':'Password', 'class':'form-group form-control', 'autofocus type':'text'}))
     confirmation = forms.CharField(label = "",widget=forms.PasswordInput(attrs={'placeholder':'Confirm Password', 'class':'form-group form-control', 'autofocus type':'text'}))
-    image = forms.ImageField(label = "Choose your Profile Photo")
+    image = forms.ImageField(label = "")
 
 
 class LoginForm(forms.Form):
@@ -35,26 +35,45 @@ class PasswordChangeForm(forms.Form):
 
 
 class AdminForm1(forms.Form):
-    title = forms.CharField(label = "",widget= forms.TextInput(attrs={'placeholder':'Title'}))
-    description = forms.CharField(label = "",widget= forms.TextInput(attrs={'placeholder':'Description'}))
+    title = forms.CharField(label = "",widget= forms.TextInput(attrs={'placeholder':'Title', 'class':'form-group form-control', 'autofocus type':'text'}))
+    description = forms.CharField(label = "",widget= forms.Textarea(attrs={'placeholder':'Description',"rows":5, "cols":20, 'class':'form-group form-control', 'autofocus type':'text'}))
 
 
 class AdminForm2(forms.Form):
-    name = forms.CharField(label = "",widget= forms.TextInput(attrs={'placeholder':'Candidate Name'}))
-    des = forms.CharField(label = "",widget= forms.TextInput(attrs={'placeholder':'Candidate Description'}))
-    cand_im = forms.ImageField(label = "Image")
+    name = forms.CharField(label = "",max_length=16,widget= forms.TextInput(attrs={'placeholder':'Candidate Name', 'class':'form-group form-control', 'autofocus type':'text'}))
+    des = forms.CharField(label = "",widget= forms.Textarea(attrs={'placeholder':'Candidate Description',"rows":3, 'class':'form-group form-control', 'autofocus type':'text'}))
+    cand_im = forms.ImageField(label = "")
 
 
 class VoterForm1(forms.Form):
-    boothID = forms.CharField(label = "",widget= forms.TextInput(attrs={'placeholder':'Enter Booth ID'}))
+    boothID = forms.CharField(label = "",widget= forms.TextInput(attrs={'placeholder':'Booth ID', 'class':'form-group form-control', 'autofocus type':'text'}))
+
+
+class FeedbackForm(forms.Form):
+    subject = forms.CharField(label = "",max_length=16,widget= forms.TextInput(attrs={'placeholder':'Subject', 'class':'form-group form-control', 'autofocus type':'text'}))
+    feedback = forms.CharField(label = "",widget= forms.Textarea(attrs={'placeholder':'Feedback',"rows":5, 'class':'form-group form-control', 'autofocus type':'text'}))
+
+
+def generate_boothID():
+    var = uuid.uuid4().hex[:10].upper()
+    var = var + "@booth"
+    return var
 
 
 def index(request):
-    return render(request, "wbvs/index.html")
+    return render(request, "wbvs/index.html", {
+        "feedback_form" : FeedbackForm(),
+    })
 
 
+@login_required(login_url='login')
 def homepage(request):
-    return render(request, "wbvs/homepage.html")
+    return render(request, "wbvs/homepage.html", {
+        "voterform1" : VoterForm1(),
+        "adminform1" : AdminForm1(),
+        "boothID" : generate_boothID(),
+        "feedback_form" : FeedbackForm(),
+    })
 
 
 def login_view(request):
@@ -71,23 +90,30 @@ def login_view(request):
         if user is not None:
             login(request, user)
             return render(request, "wbvs/homepage.html", {
-                "success_login" : True
+                "success_login" : True,
+                "voterform1" : VoterForm1(),
+                "adminform1" : AdminForm1(),
+                "boothID" : generate_boothID(),
+                "feedback_form" : FeedbackForm()
             })
         else:
             return render(request, "wbvs/login.html", {
                 "message": "Invalid email and/or password.",
-                "login_form" : LoginForm(request.POST)
+                "login_form" : LoginForm(request.POST),
+                "feedback_form" : FeedbackForm(),
             })
     else:
         return render(request, "wbvs/login.html", {
-            "login_form" : LoginForm()
+            "login_form" : LoginForm(),
+            "feedback_form" : FeedbackForm(),
         })
 
 
 def logout_view(request):
     logout(request)
     return render(request, "wbvs/index.html", {
-        "success_logout" : True
+        "success_logout" : True,
+        "feedback_form" : FeedbackForm(),
     })
 
 
@@ -109,7 +135,8 @@ def register(request):
             if password != confirmation:
                 return render(request, "wbvs/register.html", {
                     "message": "Passwords must match.",
-                    "register_form" : RegisterForm(request.POST)
+                    "register_form" : RegisterForm(request.POST),
+                    "feedback_form" : FeedbackForm(),
                 })
 
             # Attempt to create new user user.image.url
@@ -119,28 +146,36 @@ def register(request):
             except IntegrityError:
                 return render(request, "wbvs/register.html", {
                     "message": "Email already in use.",
-                    "register_form" : RegisterForm(request.POST)
+                    "register_form" : RegisterForm(request.POST),
+                    "feedback_form" : FeedbackForm(),
                 })
             login(request, user)
             return render(request, "wbvs/homepage.html", {
-                "success_register" : True
+                "success_register" : True,
+                "voterform1" : VoterForm1(),
+                "adminform1" : AdminForm1(),
+                "boothID" : generate_boothID(),
+                "feedback_form" : FeedbackForm(),
             })
     else:
         return render(request, "wbvs/register.html", {
-            "register_form" : RegisterForm()
+            "register_form" : RegisterForm(),
+            "feedback_form" : FeedbackForm(),
         })
 
 
-def adminpage1(request):
-    var = uuid.uuid4().hex[:10].upper()
-    var = var + "@booth"
-    Booth.objects.create(boothID = var, active = True, admin = request.user)
-    return render(request, "wbvs/adminpage1.html", {
+@login_required(login_url='login')
+def booth_creator(request):
+    var = generate_boothID()
+    return render(request, "wbvs/homepage.html", {
         "boothID" : var,
-        "adminform1" : AdminForm1()
+        "adminform1" : AdminForm1(),
+        "voterform1" : VoterForm1(),
+        "feedback_form" : FeedbackForm(),
     })
 
 
+@login_required(login_url='login')
 def adminform1(request, Id):
     user_var = User.objects.get(pk = request.user.id)
     if request.method == "POST":
@@ -148,13 +183,19 @@ def adminform1(request, Id):
         if data.is_valid():
             ti = data.cleaned_data["title"]
             des = data.cleaned_data["description"]
+            Booth.objects.create(boothID = Id, active = True, admin = request.user)
             Booth.objects.filter(boothID = Id, active = True).update(title = ti, admin = user_var, description = des)
             History.objects.create(user = request.user, boothID = Id, role = "Voting Admin", result_declared = False, result = "", active = True, voting_status = "NA")
             return HttpResponseRedirect(reverse("adminpage2", args=(Id, )))
         else:
-            return HttpResponseRedirect(reverse("homepage"))
+            return render(request, "wbvs/homepage.html",{
+                "voterform1" : VoterForm1(),
+                "adminform1" : AdminForm1(),
+                "boothID" : generate_boothID(),
+                "feedback_form" : FeedbackForm(),
+            })
 
-
+@login_required(login_url='login')
 def adminpage2(request, Id):
     candidate_var = Candidate.objects.filter(boothID = Id).all()
     if request.method == "POST":
@@ -174,9 +215,11 @@ def adminpage2(request, Id):
             "boothID" : Id,
             "candidate_list" : candidate_var,
             "adminform2" : AdminForm2(),
+            "feedback_form" : FeedbackForm(),
         })
 
 
+@login_required(login_url='login')
 def adminpage3(request, Id):
     voter_list = Voter.objects.filter(boothID = Id).all()
     if request.method == "POST":
@@ -197,6 +240,7 @@ def adminpage3(request, Id):
             "boothID" : Id,
             "candidate_list" : candidate_var,
             "adminform2" : AdminForm2(),
+            "feedback_form" : FeedbackForm(),
         })
 
     return render(request, "wbvs/adminpage3.html", {
@@ -207,10 +251,12 @@ def adminpage3(request, Id):
         "denied_requests" : len(Voter.objects.filter(boothID = Id , allowed = -1).all()),
         "voted_votes" : len(Voter.objects.filter(boothID = Id , allowed = 1, voting_status = "Voted").all()),
         "pending_votes" : len(Voter.objects.filter(boothID = Id , allowed = 1, voting_status = "Not Voted").all()),
+        "feedback_form" : FeedbackForm(),
     })
 
 
-def voterpage1(request):
+@login_required(login_url='login')
+def boothcheck(request):
     if request.method == "POST":
         data = VoterForm1(request.POST)
         if data.is_valid():
@@ -219,25 +265,35 @@ def voterpage1(request):
                 booth = Booth.objects.get(boothID = boo, active = True)
             except:
                 return render(request, "wbvs/homepage.html", {
-                    "failed_booth_find" : True
+                    "failed_booth_find" : True,
+                    "voterform1" : VoterForm1(),
+                    "adminform1" : AdminForm1(),
+                    "boothID" : generate_boothID(),
+                    "feedback_form" : FeedbackForm(),
                 })
             History.objects.create(user = request.user, boothID = boo, role = "Voter", result_declared = False, result = "", active = True, voting_status = "W8ing_4_req")
             return render(request, "wbvs/voterpage2.html", {
                 "boothID" : boo,
                 "booth" : booth,
-                "admin" : User.objects.get(pk = booth.admin.id)
+                "admin" : User.objects.get(pk = booth.admin.id),
+                "feedback_form" : FeedbackForm(),
             }) 
 
-    return render(request, "wbvs/voterpage1.html", {
+    return render(request, "wbvs/homepage.html", {
         "voterform1" : VoterForm1(),
+        "adminform1" : AdminForm1(),
+        "boothID" : generate_boothID(),
+        "feedback_form" : FeedbackForm(),
     })
 
 
+@login_required(login_url='login')
 def access(request, Id):
     Voter.objects.create(boothID = Id, voterID = request.user, allowed = 0, voting_status = "Not Voted")
     return HttpResponseRedirect(reverse("waiting", args=(Id, )))
 
 
+@login_required(login_url='login')
 def waiting(request, Id):
     var = Voter.objects.get(boothID = Id, voterID = request.user)
 
@@ -248,15 +304,21 @@ def waiting(request, Id):
         allowed = True
     if var.allowed == -1:
         return render(request, "wbvs/homepage.html", {
-            "permission_denied" : True
+            "permission_denied" : True,
+            "voterform1" : VoterForm1(),
+            "adminform1" : AdminForm1(),
+            "boothID" : generate_boothID(),
+            "feedback_form" : FeedbackForm(),
         })
     
     return render(request, "wbvs/waiting.html", {
         "allowed" : allowed,
         "boothID" : Id,
+        "feedback_form" : FeedbackForm(),
     })
 
 
+@login_required(login_url='login')
 def voterpage3(request , Id):
     if request.method == "POST":
         voter_var = User.objects.get(pk = request.user.id)
@@ -264,13 +326,18 @@ def voterpage3(request , Id):
         VotingList.objects.create(boothID = Id, candidateID = request.POST["candidate_selected"], voterID = voter_var)
         History.objects.filter(boothID = Id, role = "Voter").update(user = request.user, voting_status = "Voted")
         return render(request, "wbvs/homepage.html", {
-            "success_vote" : True
+            "success_vote" : True,
+            "voterform1" : VoterForm1(),
+            "adminform1" : AdminForm1(),
+            "boothID" : generate_boothID(),
+            "feedback_form" : FeedbackForm(),
         })
     
     candidate_var = Candidate.objects.filter(boothID = Id).all()
     return render(request, "wbvs/voterpage3.html", {
         "boothId" : Id,
-        "candidate_list" : candidate_var
+        "candidate_list" : candidate_var,
+        "feedback_form" : FeedbackForm(),
     })
 
 
@@ -287,6 +354,7 @@ def give_winner(Id):
     return winner
 
 
+@login_required(login_url='login')
 def calculate(request, Id):
     Booth.objects.filter(boothID = Id).update(active = False)
     entries = VotingList.objects.filter(boothID = Id).all()
@@ -302,6 +370,7 @@ def calculate(request, Id):
     return HttpResponseRedirect(reverse("view_result", args=(Id, )))
 
 
+@login_required(login_url='login')
 def view_result(request, Id):
     booth = Booth.objects.get(boothID = Id)
     result_pg_availaible = not(booth.active)
@@ -317,21 +386,28 @@ def view_result(request, Id):
         "winner" : winner,
         "show_result" : result_pg_availaible,
         "candidates_data" : data,
-        "boothID" : Id
+        "boothID" : Id,
+        "feedback_form" : FeedbackForm(),
     })
 
 
+@login_required(login_url='login')
 def history(request):
     data = History.objects.filter(user = request.user).all()
     return render(request, "wbvs/history.html", {
-        "data" : data
+        "data" : data,
+        "feedback_form" : FeedbackForm(),
     })
 
 
+@login_required(login_url='login')
 def view_details(request):
-    return render(request, "wbvs/view_details.html")
+    return render(request, "wbvs/view_details.html", {
+        "feedback_form" : FeedbackForm(),
+    })
 
 
+@login_required(login_url='login')
 def edit_password(request):
     if request.method == "POST":
         new_password = request.POST["new_password"]
@@ -340,11 +416,43 @@ def edit_password(request):
         if new_password != confirmation:
             return render(request, "wbvs/edit_password.html", {
                 "message": "Passwords must match.",
-                "passwd_form" : PasswordChangeForm(request.POST)
+                "passwd_form" : PasswordChangeForm(request.POST),
+                "feedback_form" : FeedbackForm(),
             })
         User.objects.filter(username = request.user.username).update(password = make_password(new_password))
         return HttpResponseRedirect(reverse("index"))
 
     return render(request, "wbvs/edit_password.html", {
-        "passwd_form" : PasswordChangeForm()
+        "passwd_form" : PasswordChangeForm(),
+        "feedback_form" : FeedbackForm(),
+    })
+
+@login_required(login_url='login')
+def feedback(request):
+    if request.method == "POST":
+        data = FeedbackForm(request.POST)
+        if data.is_valid():
+            sub = request.POST["subject"]
+            feed = request.POST["feedback"]
+            Feedback.objects.create(user = request.user, subject = sub, feedback = feed)
+            return render(request, "wbvs/homepage.html", {
+                "voterform1" : VoterForm1(),
+                "adminform1" : AdminForm1(),
+                "boothID" : generate_boothID(),
+                "feedback_form" : FeedbackForm(),
+                "feedback_msg" : True
+            })
+        else:
+            return render(request, "wbvs/homepage.html", {
+                "voterform1" : VoterForm1(),
+                "adminform1" : AdminForm1(),
+                "boothID" : generate_boothID(),
+                "feedback_form" : FeedbackForm(),
+                "feedback_error_msg" : True
+            })
+    return render(request, "wbvs/homepage.html", {
+        "voterform1" : VoterForm1(),
+        "adminform1" : AdminForm1(),
+        "boothID" : generate_boothID(),
+        "feedback_form" : FeedbackForm(),
     })
