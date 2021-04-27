@@ -6,14 +6,15 @@
 <script src="{% static 'wbvs/js/confetti.js' %}"></script>
 {% endblock %}
 
-{% block title %}
+{% block title %}   
     Result
 {% endblock %}
  
 {% block content %}
+    <div class="bkgrnd" style="background-image: url(/media/images/landing_pg/index_images/M1.jpeg); margin-top: 5px; width: 98.9%;background-position: center;">
         <h4 style="text-align: center; margin: 20px; color: #1b437d;">Booth <strong style="text-decoration: underline;">{{boothID}}</strong> Polling Result</h4>
         {% if show_result %}
-            <table style="text-align: center; margin: 30px; float: left;" class="voting_stat_table">
+            <table style="text-align: center; margin: 30px; float: left; background-color: white;" class="voting_stat_table">
                 <thead>
                     <td>Candidate Name</td>
                     <td>Candidate Profile Photo</td>
@@ -33,6 +34,7 @@
                 <span class="gradient-text">Congratulations!!! <br> <strong style="text-decoration: underline; color: #1b437d;">{{winner}}</strong> <br>Has Won <br> The Polling</span>
             </h1>
         {% endif %}
+    </div>
     <script>
         const start = () => {
             setTimeout(function() {
