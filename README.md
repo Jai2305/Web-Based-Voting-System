@@ -7,10 +7,10 @@ Developing a Web Based Voting System Using HTML, CSS and Django Framework.
 * [Setup](#setup)
 * [Launch](#launch)
 * [Illustrations](#illustrations)
-* [Examples of use](#example_of_use)
-* [Project status](#status)
+* [Examples](#example)
+* [Status](#status)
 * [Sources](#sources)
-* [Other information](#other)
+* [Other](#other)
 
 
 ## Introduction
@@ -24,8 +24,6 @@ Web Based Voting System will be able to solve many problems like -
 
 
 ## Technologies
-Project is created with:
-
   #### Software Used :
   * VS Code : 1.58.2
   * DB Browser For SQLite : 3.11.2
@@ -38,6 +36,45 @@ Project is created with:
   * Django : 3.1.7
   #### Project Tested On :
    * Chrome Web Browser  : 91.0.4 (Official Build) (64-bit)
-  
+
+
 ## Setup
-To run this project, install it locally using npm:
+First you must have these softwares and languages installed on your system -
+  * [DB Browser For SQLite : 3.11.2](https://sqlitebrowser.org/dl/)
+  * [Python 3](https://www.python.org/)
+  * [Django : 3.1.7](https://docs.djangoproject.com/en/3.2/topics/install/)
+  * Chrome Web Browser (latest)
+
+
+## Launch
+To run this project, run these commands in terminal. Make sure that manage.py file is present in the current directory
+```
+$ python3 manage.py makemigrations
+$ python manage.py migrate
+$ python manage.py runserver
+```
+Project will be availaible on address **http://127.0.0.1:8000/**
+
+Note :- For Admin Access First You need to Create Super User using Command
+```
+$ python3 manage.py createsuperuser
+```
+Admin panel can be accessed at **http://127.0.0.1:8000/admin** after running the server
+
+## Illustrations
+
+
+## Examples
+
+
+## Project status
+  ***Incomplete***
+
+
+## Sources
+  * [**Django Documentation**](https://docs.djangoproject.com/en/3.2/)
+  * Images used in this project may be subject to copyright.
+  
+
+## Other
+  This Project was created under course "Software Engineering and Project Management" under the guidance of **Dr.N.Arivazhagan**, course provided by **SRM Institute of Science and Technology**, SRM Nagar, Kattankulathur, Chengalpattu District, Tamil Nadu - 603 203 , India.
