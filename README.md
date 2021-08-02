@@ -8,6 +8,7 @@ Developing a Web Based Voting System Using HTML, CSS and Django Framework.
 * [Launch](#launch)
 * [Illustrations](#illustrations)
 * [Examples](#example)
+* [Contribution] (#contribution)
 * [Status](#status)
 * [Sources](#sources)
 * [Other](#other)
@@ -65,6 +66,14 @@ Admin panel can be accessed at **http://127.0.0.1:8000/admin** after running the
 
 
 ## Examples
+
+
+## Contribution
+This project was possible only because of contribution of **Team CSquare**
+CSquare consist of following members along with their contribution in this project :-
+1. [Abhinay Chaupal (Front End)](https://github.com/Abhi26ra)
+2. [Chigilipalli Sriharsha (UI & UX)](https://github.com/chs1268-dotcom)
+3. [Abhinav Sharma (Backend)](https://github.com/as567652)
 
 
 ## Project status
