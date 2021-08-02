@@ -8,7 +8,7 @@ Developing a Web Based Voting System Using HTML, CSS and Django Framework.
 * [Launch](#launch)
 * [Illustrations](#illustrations)
 * [Examples](#example)
-* [Contribution] (#contribution)
+* [Contribution](#contribution)
 * [Status](#status)
 * [Sources](#sources)
 * [Other](#other)
