@@ -7,7 +7,6 @@ Developing a Web Based Voting System Using HTML, CSS and Django Framework.
 * [Setup](#setup)
 * [Launch](#launch)
 * [Illustrations](#illustrations)
-* [Examples](#example)
 * [Contribution](#contribution)
 * [Status](#status)
 * [Sources](#sources)
@@ -103,9 +102,6 @@ Admin panel can be accessed at **http://127.0.0.1:8000/admin** after running the
 <p align="left">
   <img src="voting_system/media/images/readme_images/Feedback_page.png" width=100% title="feedback">
 </p>
-
-
-## Examples
 
 
 ## Contribution
