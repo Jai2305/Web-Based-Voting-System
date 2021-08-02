@@ -68,30 +68,37 @@ Admin panel can be accessed at **http://127.0.0.1:8000/admin** after running the
 <p align="left">
   <img src="voting_system/media/images/readme_images/index_0.png" width=100% title="index">
 </p>
+
 ### Project Contributors
 <p align="left">
   <img src="voting_system/media/images/readme_images/index_1.png" width=100% title="contributors">
 </p>
+
 ### Sidebar
 <p align="left">
   <img src="voting_system/media/images/readme_images/sidebar.png" width=100% title="sidebar">
 </p>
+
 ### Registration Page
 <p align="left">
   <img src="voting_system/media/images/readme_images/registration_page.png" width=100% title="registration_page">
 </p>
+
 ### Login Page
 <p align="left">
   <img src="voting_system/media/images/readme_images/login_page.png" width=100% title="login_page">
 </p>
+
 ### Important Links Tab
 <p align="left">
   <img src="voting_system/media/images/readme_images/important_links.png" width=100% title="important_links">
 </p>
+
 ### FAQ Tab
 <p align="left">
   <img src="voting_system/media/images/readme_images/FAQ.png" width=100% title="faq">
 </p>
+
 ### Feedback Tab
 <p align="left">
   <img src="voting_system/media/images/readme_images/Feedback_page.png" width=100% title="feedback">
@@ -102,7 +109,7 @@ Admin panel can be accessed at **http://127.0.0.1:8000/admin** after running the
 
 
 ## Contribution
-This project was possible only because of contribution of **Team CSquare**
+This project was possible only because of contribution of **Team CSquare**.
 CSquare consist of following members along with their contribution in this project :-
 1. [Abhinay Chaupal (Front End)](https://github.com/Abhi26ra)
 2. [Chigilipalli Sriharsha (UI & UX)](https://github.com/chs1268-dotcom)
