@@ -7,6 +7,7 @@ Developing a Web Based Voting System Using HTML, CSS and Django Framework.
 * [Setup](#setup)
 * [Launch](#launch)
 * [Illustrations](#illustrations)
+* [Example](#example)
 * [Contribution](#contribution)
 * [Status](#status)
 * [Sources](#sources)
@@ -104,6 +105,68 @@ Admin panel can be accessed at **http://127.0.0.1:8000/admin** after running the
 </p>
 
 
+## Example
+
+### Homepage
+<p align="left">
+  <img src="voting_system/media/images/readme_images/homepage.png" width=100% title="homepage">
+</p>
+
+### Profile
+<p align="left">
+  <img src="voting_system/media/images/readme_images/profile.png" width=100% title="profile">
+</p>
+
+### Change Password
+<p align="left">
+  <img src="voting_system/media/images/readme_images/change_password.png" width=100% title="change password">
+</p>
+
+### Generating Unique Booth ID By Voting Admin
+<p align="left">
+  <img src="voting_system/media/images/readme_images/admin_0.png" width=100% title="admin_0">
+</p>
+
+### Setting Up Candidates By Admin
+<p align="left">
+  <img src="voting_system/media/images/readme_images/candidate setup.png" width=100% title="candidate setup">
+</p>
+
+### Unique access ID for Voter
+<p align="left">
+  <img src="voting_system/media/images/readme_images/voter_0.jpeg" width=100% title="voter_0">
+</p>
+
+### Detils before requesting
+<p align="left">
+  <img src="voting_system/media/images/readme_images/details.jpeg" width=100% title="details">
+</p>
+
+### Wait after requesting until request is accepted
+<p align="left">
+  <img src="voting_system/media/images/readme_images/waiting_page.jpeg" width=100% title="waiting_page">
+</p>
+
+### Summary for all voting requests and voting done on admin side
+<p align="left">
+  <img src="voting_system/media/images/readme_images/portal.png" width=100% title="portal">
+</p>
+
+### Voting Portal at voter side
+<p align="left">
+  <img src="voting_system/media/images/readme_images/Voting_portal.jpeg" width=100% title="Voting Portal">
+</p>
+
+### Winner Page On Announcement
+<p align="left">
+  <img src="voting_system/media/images/readme_images/winner.png" width=100% title="Winner">
+</p>
+
+### History
+<p align="left">
+  <img src="voting_system/media/images/readme_images/history.png" width=100% title="History">
+</p>
+
 ## Contribution
 This project was possible only because of contribution of **Team CSquare**.
 CSquare consist of following members along with their contribution in this project :-
@@ -113,7 +176,8 @@ CSquare consist of following members along with their contribution in this proje
 
 
 ## Project status
-  ***Incomplete***
+  ***Completed***
+  (Improvements Needed)
 
 
 ## Sources
