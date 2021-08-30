@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from django import forms
-
+ 
 from django.contrib.auth.hashers import make_password
 
 from .models import Result, User, Booth, Candidate, Voter, VotingList, History, Feedback
@@ -174,7 +174,7 @@ def booth_creator(request):
         "feedback_form" : FeedbackForm(),
     })
 
-
+ 
 @login_required(login_url='login')
 def adminform1(request, Id):
     user_var = User.objects.get(pk = request.user.id)

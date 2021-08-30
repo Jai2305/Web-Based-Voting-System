@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db.models.base import Model
 from django.utils.timezone import now
 
-
+ 
 # Create your models here.
 class User(AbstractUser):
     image = models.ImageField(upload_to = "images/user", blank=True)
