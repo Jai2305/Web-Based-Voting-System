@@ -1,6 +1,15 @@
 # Web Based Voting System
 Developing a Web Based Voting System Using HTML, CSS and Django Framework.
 
+![](https://img.shields.io/badge/HTML-v5-orange?style=for-the-badge&logo=html5)
+![](https://img.shields.io/badge/CSS-v3-lightgrey?style=for-the-badge&logo=css3)
+![](https://img.shields.io/badge/JavaScript-ECMAScript&nbsp;2018-yellow?style=for-the-badge&logo=javascript)
+![](https://img.shields.io/badge/Python-v3.8-yellow?style=for-the-badge&logo=python)
+![](https://img.shields.io/badge/Django-v3.1-%230C3C26?style=for-the-badge&logo=django)
+
+![](https://img.shields.io/badge/Full&nbsp;Stack&nbsp;Web&nbsp;Development-Voting&nbsp;Application-green?style=for-the-badge)
+
+
 ## Table of contents
 * [Introduction](#introduction)
 * [Technologies](#technologies)
@@ -172,7 +181,7 @@ This project was possible only because of contribution of **Team CSquare**.
 CSquare consist of following members along with their contribution in this project :-
 1. [Abhinay Chaupal (Front End)](https://github.com/Abhi26ra)
 2. [Chigilipalli Sriharsha (UI & UX)](https://github.com/chs1268-dotcom)
-3. [Abhinav Sharma (Backend)](https://github.com/as567652)
+3. [Abhinav Sharma (Backend + System Integration)](https://github.com/as567652) - Team Lead
 
 
 ## Project status
