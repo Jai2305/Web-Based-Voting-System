@@ -29,12 +29,10 @@
     <body>
         <div class="sidenav" id="mySidenav">
             <div class="logo_bkgrnd" style="background-color: white; width: 255;">
-                <img src="/media/images/C_Sq2.png" class="logo" style="margin-bottom: 0; margin-left: 44.5px;">
             </div>
             <top>
                 {% if user.is_authenticated %}
                     <top_content><a href="{% url 'homepage' %}">Home</a></top_content>
-                    <top_content><a href="{% url 'view_details' %}">Profile</a></top_content>
                     <top_content><a href="{% url 'history' %}">History</a></top_content>
                     <top_content><a href="{% url 'logout' %}">LogOut</a></top_content>
                 {% else %}
@@ -76,7 +74,7 @@
         <div id="main">
             <header>
                 <div style=" border: 4px; border-color: #1b437d; color: #1b437d ;border-style: solid; padding: 5px;">
-                    <h2 style="text-align: center; margin-top: 10px; margin-bottom: 10px;"><strong>Web Based Voting System</strong></h2>
+                    <h2 style="text-align: center; margin-top: 10px; margin-bottom: 10px;"><strong>Finger Print Based Voting System</strong></h2>
                 </div>
             </header>
             
