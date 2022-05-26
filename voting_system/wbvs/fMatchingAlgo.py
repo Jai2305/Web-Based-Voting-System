@@ -1,12 +1,15 @@
 import os
 import cv2
-sample = cv2.imread("Altered/Altered-Easy/1__M_Left_index_finger_CR.BMP")
+import time 
+sample = cv2.imread("Altered/Altered-Easy/123__M_Left_index_finger_CR.BMP")
 
 best_score = 0
-filename = None
+filename = ""
 image = None
 kp1, kp2, mp= None, None, None
+start = time.time()
 for file in [file for file in os.listdir("Real")][:1000] :
+    print(file)
     fingerprint_image = cv2.imread("Real/"+file)
     sift = cv2.SIFT_create()
 
@@ -31,10 +34,13 @@ for file in [file for file in os.listdir("Real")][:1000] :
         image= fingerprint_image
         kp1, kp2, mp = keypoints_1, keypoints_2, match_points
 
-print("BEST MATCH": +filename)
+end = time.time()
+print("BEST MATCH:" +filename)
 print("SCORE:"+ str(best_score))
+print("Time:"+str(end - start))
 
 result = cv2.drawMatches(sample, kp1, image, kp2, mp, None)
-result = cv2.resize(result, fx=4, fy=4)
+result = cv2.resize(result,None, fx=4, fy=4)
+cv2.imshow("Result",result)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
